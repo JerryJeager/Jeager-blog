@@ -1,6 +1,6 @@
 const Categories = ()  => {
     return (
-        <div className="overflow-x-scroll">
+        <div className="overflow-x-scroll md:overflow-x-hidden">
             
           <div className="flex justify-between gap-2 w-[90%] mx-auto h-auto mt-3">
             <div className="bg-red p-2 rounded-sm cursor-pointer">Featured</div>

@@ -6,15 +6,11 @@ import { useNavigate } from "react-router-dom"
 
 const Create = () => {
     const navigate = useNavigate()
-    const uniqueId = () => {
-        return Math.random().toString(36).substring(2,9)
-    }
 
     const [blogTitle, setBlogTitle] = useState('')
     const [blogBody, setBlogBody] = useState('')
     const [blogAuthor, setBlogAuthor] = useState('')
     const [category, setCategory] = useState('Featured')
-    const [id, setId] = useState()
 
 
      const handleSubmit = (e) => {
@@ -40,7 +36,7 @@ const Create = () => {
         <div>
            <h2 className="text-red text-lg mt-6 font-bold text-center">Add a New Blog</h2>
 
-           <div className="w-[90%] mx-auto mt-4">
+           <div className="w-[90%] md:w-[70%] mx-auto mt-4">
             <form action="" onSubmit={e => handleSubmit(e)} className="text-berkeleyBlue">
                 <label htmlFor="">Blog Title</label>
                 <input type="text" className="w-full mb-3 p-2 caret-red" value={blogTitle} onChange={e => {

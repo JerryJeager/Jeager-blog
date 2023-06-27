@@ -27,7 +27,7 @@ const Header = () => {
             </div>
 
              {/* NavBar */}
-            <div className={` transition-all duration-500 ${isHamburgerClicked ? "h-[100vh] w-[60%] absolute top-0 bg-white right-[0%]" : "right-[-100%]"}`}>
+            <div className={` transition-all duration-500 ${isHamburgerClicked ? "h-[100vh] w-[60%] md:w-[30%] absolute top-0 bg-white right-[0%]" : "right-[-100%]"}`}>
                 <div className={`${isHamburgerClicked ? "flex items-center" : "hidden"}`}>
                     <ul className="text-lg font-bold flex flex-col justify-between mt-[50px] p-4">
                         <li>

@@ -29,7 +29,7 @@ const Home = () => {
         {/* Blog posts */}
 
         <div className="w-[90%] mt-3 mx-auto">
-           <div className="grid grid-cols-1 gap-4 mt-3">
+           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
             {
                 blogPosts.map((blog) => (
                     <div className="rounded-sm shadow-md bg-white p-2" key={blog.id}>
@@ -37,7 +37,7 @@ const Home = () => {
                  <div className="bg-white flex justify-between border-t-2 border-slate-500 mt-4 pt-2">
                     <div>{blog.author}</div>
                     <div className="flex justify-between gap-2">
-                        <div><a href="#">Read more </a></div>
+                        <div><NavLink to={`/BlogDetails?id=${blog.id}`}>Read more </NavLink></div>
                         <div><i className="fa-regular fa-heart"></i></div>
                         {/* <div>like</div> */}
                     </div>
