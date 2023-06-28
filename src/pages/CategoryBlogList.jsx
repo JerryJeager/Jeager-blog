@@ -1,6 +1,5 @@
 import { useLocation, NavLink } from "react-router-dom"
-import {  doc, getDoc, onSnapshot, query, where } from "firebase/firestore"
-import { db } from "../firebase"
+import { onSnapshot, query, where } from "firebase/firestore"
 import { useState, useEffect } from "react"
 import { colRef } from "../firebase"
 

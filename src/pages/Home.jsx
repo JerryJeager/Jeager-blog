@@ -8,7 +8,8 @@ import Categories from "../components/Categories";
 const Home = () => {
 
     const [blogPosts, setBlogPosts] = useState([])
-
+     
+    // fetch blog data from firestore
     useEffect(() => {
         onSnapshot(colRef, (snapshot) => {
             let blogs = []
@@ -16,7 +17,7 @@ const Home = () => {
             blogs.push({...doc.data(), id: doc.id})
            })
            setBlogPosts(blogs)
-           console.log(blogs)
+        //    console.log(blogs)
         })
     }, [])
 
@@ -28,7 +29,7 @@ const Home = () => {
 
         {/* Blog posts */}
 
-        <div className="w-[90%] mt-3 mx-auto">
+        <div className="w-[90%] mt-3 mx-auto pb-8">
            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
             {
                 blogPosts.map((blog) => (
@@ -37,7 +38,7 @@ const Home = () => {
                  <div className="bg-white flex justify-between border-t-2 border-slate-500 mt-4 pt-2">
                     <div>{blog.author}</div>
                     <div className="flex justify-between gap-2">
-                        <div><NavLink to={`/BlogDetails?id=${blog.id}`}>Read more </NavLink></div>
+                        <div><NavLink to={`/BlogDetails?id=${blog.id}`} className=" underline">Read more </NavLink></div>
                         <div><i className="fa-regular fa-heart"></i></div>
                         {/* <div>like</div> */}
                     </div>

@@ -15,7 +15,6 @@ const Create = () => {
 
      const handleSubmit = (e) => {
          e.preventDefault(); 
-         setId(uniqueId)
     console.log("Blog Title:", blogTitle);
     console.log("Blog Body:", blogBody);
     console.log("Blog Author:", blogAuthor);
