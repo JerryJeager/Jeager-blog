@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getStorage} from "firebase/storage"
-import {getFirestore, collection, getDocs} from "firebase/firestore"
+import {getFirestore, collection, getDocs, query, where} from "firebase/firestore"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,5 +24,6 @@ export const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore()
 export const colRef = collection(db, 'Blogs')
+
 
 export const storage = getStorage()
