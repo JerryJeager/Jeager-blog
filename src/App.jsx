@@ -1,3 +1,5 @@
+import store from './redux/store'
+import { Provider } from 'react-redux'
 import { RouterProvider, createRoutesFromElements, Route, createBrowserRouter } from "react-router-dom"
 import Layout from "./components/Layout"
 import Home from "./pages/Home"
@@ -6,6 +8,7 @@ import BlogDetails from "./pages/BlogDetails"
 import CategoryBlogList from "./pages/CategoryBlogList"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
+
 
 
 function App() {
@@ -27,7 +30,9 @@ function App() {
   )
 
   return (
-      <RouterProvider router={router} />
+    <Provider store={store}>
+        <RouterProvider router={router} />
+    </Provider>
   )
 }
 

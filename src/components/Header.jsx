@@ -1,14 +1,24 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { NavLink, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+
 
 const Header = () => {
+
+    const navigate = useNavigate()
     
     const [isHamburgerClicked, setIsHamburgerClicked] = useState(false)
+
+    const {isLoggedIn} = useSelector(state => state.user)
 
 
     const handleClickedHamburger = () => {
         setIsHamburgerClicked(preValue => !preValue)
     }
+
+    useEffect(() => {
+        console.log(isLoggedIn)
+    }, [])
 
     return(
         <>
@@ -34,7 +44,7 @@ const Header = () => {
                             <NavLink to={'/'} onClick={() => setIsHamburgerClicked(false)}>Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/Create'} onClick={() => setIsHamburgerClicked(false)}> Create Blog </NavLink>
+                            <NavLink to={`${isLoggedIn ? '/Create' : '/Login'}`} onClick={() => setIsHamburgerClicked(false)}> Create Blog </NavLink>
                         </li>
                         <li>
                             <NavLink to={'/Login'} onClick={() => setIsHamburgerClicked(false)}>Sign in</NavLink>
