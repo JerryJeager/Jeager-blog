@@ -43,7 +43,6 @@ const BlogDetails = () => {
          }
 
 
-
         </div>
     )
 }
