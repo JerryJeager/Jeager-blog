@@ -2,6 +2,8 @@ import { auth, app } from "../firebase"
 import { signInWithRedirect, getAuth, signInWithEmailAndPassword} from "firebase/auth"
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setIsLoggedIn } from "../redux/userSlice";
 
 
 const Login = () => {
@@ -10,6 +12,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+
+    const dispatch = useDispatch()
 
      const handleSignIn = (e) => {
         e.preventDefault()
@@ -20,6 +24,7 @@ const Login = () => {
         .then(cred => {
             console.log('user logged in:', cred.user)
             setIsLoading(false)
+            dispatch(setIsLoggedIn(true))
             navigate('/')
 
         })
