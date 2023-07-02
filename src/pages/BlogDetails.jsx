@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom"
 import {  doc, getDoc } from "firebase/firestore"
 import { db } from "../firebase"
 import { useEffect, useState } from "react"
+import Comments from "../components/Comments"
 
 const BlogDetails = () => {
 
@@ -31,17 +32,25 @@ const BlogDetails = () => {
 
 
     return (
-        <div className="w-[90%] mx-auto mt-3">
+        <div>
          {
             blogDetails && 
             <div>
-                <h2 className="font-bold text-xl text-berkeleyBlue">{blogDetails.title}</h2>
-                <p className="text-slate-600">By: {blogDetails.author}</p>
-                <p className="text-berkeleyBlue text-md mt-4">{blogDetails.body}</p>
+                <div className="w-[90%] mx-auto mt-3">
+                    <div className="w-[90%]">
+                        <h2 className="font-bold text-xl text-berkeleyBlue">{blogDetails.title}</h2>
+                        <p className="text-slate-600">By: {blogDetails.author}</p>
+                         <p className="text-berkeleyBlue text-md mt-4">{blogDetails.body}</p>
+
+                    </div>   
+                </div>
+
+                <div>
+                    <Comments blogId={id}/>
+                </div>
             </div>
 
          }
-
 
         </div>
     )

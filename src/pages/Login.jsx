@@ -1,9 +1,10 @@
-import { auth, app } from "../firebase"
+import { auth, app, db } from "../firebase"
 import { signInWithRedirect, getAuth, signInWithEmailAndPassword} from "firebase/auth"
+import { doc, getDocs, query, where, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setIsLoggedIn } from "../redux/userSlice";
+import { setDisplayName, setIsLoggedIn } from "../redux/userSlice";
 
 
 const Login = () => {
@@ -15,6 +16,16 @@ const Login = () => {
 
     const dispatch = useDispatch()
 
+    const getUserDoc = async (uid) => {
+        const q = query(collection(db, "Users"), where("uid", "==", uid));
+        
+        const querySnapshot = await getDocs(q);
+         querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+         dispatch(setDisplayName(doc.data().displayName))
+        });
+    }
+
      const handleSignIn = (e) => {
         e.preventDefault()
         console.log(email)
@@ -23,8 +34,9 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then(cred => {
             console.log('user logged in:', cred.user)
-            setIsLoading(false)
             dispatch(setIsLoggedIn(true))
+            getUserDoc(cred.user.uid)
+            setIsLoading(false)
             navigate('/')
 
         })
