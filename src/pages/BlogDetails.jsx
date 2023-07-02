@@ -37,7 +37,7 @@ const BlogDetails = () => {
             blogDetails && 
             <div>
                 <div className="w-[90%] mx-auto mt-3">
-                    <div className="w-[90%]">
+                    <div className="md:w-[90%]">
                         <h2 className="font-bold text-xl text-berkeleyBlue">{blogDetails.title}</h2>
                         <p className="text-slate-600">By: {blogDetails.author}</p>
                          <p className="text-berkeleyBlue text-md mt-4">{blogDetails.body}</p>
