@@ -41,7 +41,7 @@ const SignUp = () => {
             createUserDoc(cred.user.uid)
             updateDisplayName()
             dispatch(setUid(cred.user.uid))
-            dispatch(setIsLoading(true))
+            dispatch(setIsLoggedIn(true))
             navigate('/')
 
         })
