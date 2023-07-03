@@ -47,6 +47,9 @@ const Header = () => {
                             <NavLink to={`${isLoggedIn ? '/Create' : '/Login'}`} onClick={() => setIsHamburgerClicked(false)}> Create Blog </NavLink>
                         </li>
                         <li>
+                            <NavLink to={`${isLoggedIn ? '/MyBlogs' : '/Login'}`} onClick={() => setIsHamburgerClicked(false)}> My Blogs </NavLink>
+                        </li>
+                        <li>
                             <NavLink to={'/Login'} onClick={() => setIsHamburgerClicked(false)}>Sign in</NavLink>
                         </li>
                         

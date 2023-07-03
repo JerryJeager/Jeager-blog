@@ -2,30 +2,29 @@ import { useState } from "react"
 import {getFirestore, collection, getDocs, addDoc} from "firebase/firestore"
 import { colRef } from "../firebase"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 
 const Create = () => {
     const navigate = useNavigate()
+    const {uid} = useSelector(state => state.user)
+    const {displayName} = useSelector(state => state.user)
 
     const [blogTitle, setBlogTitle] = useState('')
     const [blogBody, setBlogBody] = useState('')
-    const [blogAuthor, setBlogAuthor] = useState('')
     const [category, setCategory] = useState('Featured')
 
 
      const handleSubmit = (e) => {
          e.preventDefault(); 
-    console.log("Blog Title:", blogTitle);
-    console.log("Blog Body:", blogBody);
-    console.log("Blog Author:", blogAuthor);
-    console.log("Category:", category);
-
-
+    let blogDate = new Date()
     addDoc(colRef, {
-        'author': blogAuthor,
+        'author': displayName,
         'body': blogBody,
         'category': category,
         'title': blogTitle,
+        'uid': uid,
+        'date': `${blogDate.getDate()}/${blogDate.getMonth() + 1}/${blogDate.getFullYear()}`
         
     }).then(() => navigate('/'))
 
@@ -46,11 +45,6 @@ const Create = () => {
                 <textarea name="" id="" cols="30" rows="5" className="w-full mb-3 p-2 caret-red" value={blogBody} onChange={e => {
                     setBlogBody(e.target.value)
                 }} required ></textarea>
-
-                <label htmlFor="" className="mt-3">Blog author</label>
-                <input type="text" className="w-full mb-3 p-2 caret-red" value={blogAuthor} onChange={e => {
-                    setBlogAuthor(e.target.value)
-                }} required  />
 
                 <label htmlFor="" className="mt-3">Category</label>
                 <select name="" id="" className="w-full mb-3 p-2" value={category} onChange={e => {

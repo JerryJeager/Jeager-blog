@@ -3,8 +3,8 @@ import { signInWithRedirect, getAuth, signInWithEmailAndPassword} from "firebase
 import { doc, getDocs, query, where, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setDisplayName, setIsLoggedIn } from "../redux/userSlice";
+import { useDispatch} from "react-redux";
+import { setDisplayName, setIsLoggedIn, setUid } from "../redux/userSlice";
 
 
 const Login = () => {
@@ -36,6 +36,7 @@ const Login = () => {
             console.log('user logged in:', cred.user)
             dispatch(setIsLoggedIn(true))
             getUserDoc(cred.user.uid)
+            dispatch(setUid(cred.user.uid))
             setIsLoading(false)
             navigate('/')
 

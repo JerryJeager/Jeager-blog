@@ -4,7 +4,7 @@ import {collection, addDoc} from 'firebase/firestore'
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setDisplayName } from "../redux/userSlice";
+import { setDisplayName, setUid } from "../redux/userSlice";
 
 
 const SignUp = () => {
@@ -40,6 +40,7 @@ const SignUp = () => {
             console.log('user created:', cred.user)
             createUserDoc(cred.user.uid)
             updateDisplayName()
+            dispatch(setUid(cred.user.uid))
             navigate('/')
 
         })

@@ -8,6 +8,7 @@ import BlogDetails from "./pages/BlogDetails"
 import CategoryBlogList from "./pages/CategoryBlogList"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
+import MyBlogs from './pages/MyBlogs'
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Create" element={ <Create /> } />
           <Route path="/BlogDetails" element={ <BlogDetails /> } />
           <Route path="/CategoryBlogList" element={ <CategoryBlogList /> } />
+          <Route path="/MyBlogs" element={ < MyBlogs /> } />
           <Route path="/SignUp" element={ <SignUp /> } />
           <Route path="/Login" element={ <Login /> } />
       </Route>

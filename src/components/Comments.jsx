@@ -1,13 +1,11 @@
-import { addDoc, collection, onSnapshot, query, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, onSnapshot, query, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { db } from "../firebase"
 
-
-
-
 const Comments = ({ blogId }) => {
+    const {uid} = useSelector(state => state.user)
   const navigate = useNavigate()
   const [comment, setComment] = useState('')
   const [commentList, setCommentList] = useState([])
@@ -21,11 +19,14 @@ const Comments = ({ blogId }) => {
   }
 
   const createUserDoc = (id) => {
+    const commentDate = new Date()
     const colRef = collection(db, 'Comments')
     addDoc(colRef, {
       displayName: displayName,
       blogId: id,
-      comment: comment
+      comment: comment,
+      'date': `${commentDate.getDate()}/${commentDate.getMonth() + 1}/${commentDate.getFullYear()}`,
+      commentUid: uid
     }).then(() => setComment(''))
   }
 
@@ -36,6 +37,11 @@ const Comments = ({ blogId }) => {
     }
     setComment(e.target.value)
   }
+
+  const deleteBlog = (id) => {
+        const docRef = doc(db, 'Comments', id)
+        deleteDoc(docRef)
+    }
     
      useEffect(() => {
         const colRef = collection(db, 'Comments')
@@ -72,11 +78,21 @@ const Comments = ({ blogId }) => {
           <div className="mt-3">
             {
                 commentList && 
-                commentList.map(com => (
-                    <div className="p-2 mt-2 border-slate-300 border-2 rounded-md" key={com.id}>
-                     <p className="font-semibold text-slate-400 text-sm ">{com.displayName}</p>
-                     <p className="mt-2 text-berkeleyBlue">{com.comment}</p>
+                commentList.map((com) => (
+                    <div key={com.id}>
+                        <div className="p-2 mt-2 border-slate-300 border-2 rounded-md">
+                        <p className="font-semibold text-slate-400 text-sm ">{`${com.displayName} -  ${com.date ? com.date: ""}`}</p>
+                         <p className="mt-2 text-berkeleyBlue">{com.comment}</p>
+                         </div>
+                         <div className="flex gap-2 mr-2">
+                            {
+                                com.commentUid == uid &&
+                                <div onClick={() => {deleteBlog(com.id)}}><i className="fa-solid fa-trash text-red"></i></div>
+                            }
+                        <div><i className="fa-classic fa-heart"></i></div>
+                         </div>
                     </div>
+                    
                 ))
             }
           </div>
