@@ -21,6 +21,7 @@ const Comments = ({ blogId }) => {
   const createUserDoc = (id) => {
     const commentDate = new Date()
     const colRef = collection(db, 'Comments')
+     if(comment.trim().length != 0)  //comments without whitespace only
     addDoc(colRef, {
       displayName: displayName,
       blogId: id,
@@ -42,6 +43,11 @@ const Comments = ({ blogId }) => {
         const docRef = doc(db, 'Comments', id)
         deleteDoc(docRef)
     }
+
+    const handleLike = (e) => {
+        
+    }
+
     
      useEffect(() => {
         const colRef = collection(db, 'Comments')
@@ -89,7 +95,7 @@ const Comments = ({ blogId }) => {
                                 com.commentUid == uid &&
                                 <div onClick={() => {deleteBlog(com.id)}}><i className="fa-solid fa-trash text-red"></i></div>
                             }
-                        <div><i className="fa-classic fa-heart"></i></div>
+                        <div onClick={e => handleLike(e)}><i className="fa-classic fa-heart"></i></div>
                          </div>
                     </div>
                     
