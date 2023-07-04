@@ -21,7 +21,7 @@ const Comments = ({ blogId }) => {
   const createUserDoc = (id) => {
     const commentDate = new Date()
     const colRef = collection(db, 'Comments')
-     if(comment.trim().length != 0)  //comments without whitespace only
+     if(comment.trim().length != 0)  //reject sending of comments containing only whitespace
     addDoc(colRef, {
       displayName: displayName,
       blogId: id,
