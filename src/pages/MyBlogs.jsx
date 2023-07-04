@@ -17,8 +17,12 @@ const MyBlog = () => {
     const q = query(colRef, where("uid", "==", `${uid}`))
 
     const deleteBlog = (id) => {
-        const docRef = doc(db, 'Blogs', id)
-        deleteDoc(docRef)
+        const confirmed = window.confirm("Are you sure you want to delete this blog?")
+
+        if (confirmed) {
+            const docRef = doc(db, 'Blogs', id)
+            deleteDoc(docRef)
+        }
     }
     
      useEffect(() => {
@@ -47,6 +51,7 @@ const MyBlog = () => {
                     <div>{blog.author}</div>
                     <div className="flex justify-between gap-2">
                         <div><NavLink to={`/BlogDetails?id=${blog.id}`} className="underline">Read more </NavLink></div>
+                        {/* delete a blog */}
                         <div onClick={() => {deleteBlog(blog.id)}}><i className="fa-solid fa-trash text-red"></i></div>
                         {/* <div>like</div> */}
                     </div>

@@ -20,6 +20,8 @@ const Categories = ()  => {
             <div className="bg-yellow p-2 rounded cursor-pointer"><NavLink to={'/CategoryBlogList?category=Javascript'}>Javascript</NavLink></div>
 
             <div className="bg-thistle p-2 rounded cursor-pointer"><NavLink to={'/CategoryBlogList?category=News'}>News</NavLink></div>
+
+            <div className="bg-[#e5e5e5] p-2 rounded cursor-pointer"><NavLink to={'/CategoryBlogList?category=Other'}>Others</NavLink></div>
           </div>
         </div>
     )

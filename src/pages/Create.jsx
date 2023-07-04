@@ -7,12 +7,14 @@ import { useSelector } from "react-redux"
 
 const Create = () => {
     const navigate = useNavigate()
+
     const {uid} = useSelector(state => state.user)
     const {displayName} = useSelector(state => state.user)
 
     const [blogTitle, setBlogTitle] = useState('')
     const [blogBody, setBlogBody] = useState('')
     const [category, setCategory] = useState('Featured')
+    const [isLoading, setIsLoading] = useState(false)
 
 
      const handleSubmit = (e) => {
@@ -26,7 +28,10 @@ const Create = () => {
         'uid': uid,
         'date': `${blogDate.getDate()}/${blogDate.getMonth() + 1}/${blogDate.getFullYear()}`
         
-    }).then(() => navigate('/'))
+    }).then(() => {
+        setIsLoading(false)
+        navigate('/')
+    })
 
     }
 
@@ -56,10 +61,11 @@ const Create = () => {
                     <option value="React">React</option>
                     <option value="Javascript">Javascript</option>
                     <option value="News">News</option>
+                    <option value="Other">Other</option>
                 </select>
                 
                 <div className="mx-auto w-[120px]">
-                    <button type="submit" className="bg-red p-2 font-bold text-black rounded-sm">Create Blog</button>
+                    <button type="submit" onClick={() => setIsLoading(true)} className="bg-red p-2 font-bold text-black rounded-sm">{!isLoading? 'Create Blog' : 'Creating...'}</button>
                 </div>
             </form>
            </div>
