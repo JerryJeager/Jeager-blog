@@ -41,16 +41,16 @@ const Header = () => {
                 <div className={`${isHamburgerClicked ? "flex items-center" : "hidden"}`}>
                     <ul className="text-lg font-bold flex flex-col justify-between mt-[50px] p-4">
                         <li>
-                            <NavLink to={'/'} onClick={() => setIsHamburgerClicked(false)}>Home</NavLink>
+                            <NavLink to={'/'} onClick={() => setIsHamburgerClicked(false)} className="hover:text-red">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink to={`${isLoggedIn ? '/Create' : '/Login'}`} onClick={() => setIsHamburgerClicked(false)}> Create Blog </NavLink>
+                            <NavLink to={`${isLoggedIn ? '/Create' : '/Login'}`} onClick={() => setIsHamburgerClicked(false)} className="hover:text-red"> Create Blog </NavLink>
                         </li>
                         <li>
-                            <NavLink to={`${isLoggedIn ? '/MyBlogs' : '/Login'}`} onClick={() => setIsHamburgerClicked(false)}> My Blogs </NavLink>
+                            <NavLink to={`${isLoggedIn ? '/MyBlogs' : '/Login'}`} onClick={() => setIsHamburgerClicked(false)} className="hover:text-red"> My Blogs </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/Login'} onClick={() => setIsHamburgerClicked(false)}>Sign in</NavLink>
+                            <NavLink to={'/Login'} onClick={() => setIsHamburgerClicked(false)} className="hover:text-red">Sign in</NavLink>
                         </li>
                         
                     </ul>
