@@ -8,6 +8,19 @@ import Categories from "../components/Categories";
 const Home = () => {
 
     const [blogPosts, setBlogPosts] = useState([])
+
+    const handleLike = (id) => {
+    const updatedBlogPosts = blogPosts.map((blog) => {
+      if (blog.id === id) {
+        return {
+          ...blog,
+          isLiked: !blog.isLiked,
+        }
+      }
+      return blog
+    })
+    setBlogPosts(updatedBlogPosts);
+  }
      
     // fetch blog data from firestore
     useEffect(() => {
@@ -33,13 +46,20 @@ const Home = () => {
            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-3">
             {
                 blogPosts.map((blog) => (
-                    <div className="rounded-sm shadow-md bg-white p-2" key={blog.id}>
+                    <div className="rounded-sm shadow-md bg-white hover:shadow-lg p-2" key={blog.id}>
                  <h2 className="text-2xl font-bold text-center">{blog.title}</h2>
                  <div className="bg-white flex justify-between border-t-2 border-slate-500 mt-4 pt-2">
                     <div>{blog.author}</div>
                     <div className="flex justify-between gap-2">
                         <div><NavLink to={`/BlogDetails?id=${blog.id}`} className=" underline">Read more </NavLink></div>
-                        <div><i className="fa-regular fa-heart"></i></div>
+                         <div onClick={() => handleLike(blog.id)}>
+                      {/* Toggle the class or render a different element based on the 'isLiked' status */}
+                      {blog.isLiked ? (
+                        <i className="fa-solid fa-heart text-red"></i>
+                      ) : (
+                        <i className="fa-classic fa-heart"></i>
+                      )}
+                      </div>
                         {/* <div>like</div> */}
                     </div>
                  </div>

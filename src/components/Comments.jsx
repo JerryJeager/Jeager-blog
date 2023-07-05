@@ -44,9 +44,18 @@ const Comments = ({ blogId }) => {
         deleteDoc(docRef)
     }
 
-    const handleLike = (e) => {
-        
-    }
+    const handleLike = (id) => {
+    const updatedCommentList = commentList.map((com) => {
+      if (com.id === id) {
+        return {
+          ...com,
+          isLiked: !com.isLiked,
+        }
+      }
+      return com
+    })
+    setCommentList(updatedCommentList);
+  }
 
     
      useEffect(() => {
@@ -95,7 +104,14 @@ const Comments = ({ blogId }) => {
                                 com.commentUid == uid &&
                                 <div onClick={() => {deleteBlog(com.id)}}><i className="fa-solid fa-trash text-red"></i></div>
                             }
-                        <div onClick={e => handleLike(e)}><i className="fa-classic fa-heart"></i></div>
+                        <div onClick={() => handleLike(com.id)}>
+                      {/* Toggle the class or render a different element based on the 'isLiked' status */}
+                      {com.isLiked ? (
+                        <i className="fa-solid fa-heart text-red"></i>
+                      ) : (
+                        <i className="fa-classic fa-heart text-slate-400"></i>
+                      )}
+                    </div>
                          </div>
                     </div>
                     
